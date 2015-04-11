@@ -34,9 +34,12 @@ EVENTS = {
 
 def handle_event(line):
     event = json.loads(line)
+    event.setdefault('IsHistoricEvent', False)
+    if event['IsHistoricEvent']:
+        pass
     log_event(event)
     if event['type'] in EVENTS:
-        slack_notify(event['type'] % event)
+        slack_notify(EVENTS[event['type']] % event)
     else:
         slack_notify('Earl said: ```%s```'%(event))
 
