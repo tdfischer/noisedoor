@@ -10,23 +10,23 @@ import sys
 
 sys.path.append('/etc/')
 try:
-    import noisedoor_settings
+    import noisedoor_settings as settings
 except ImportError:
     print "Missing /etc/noisedoor_settings.py"
 
 def log_event(event):
     logging.debug('Got event %s', event['type'])
     try:
-        db  = json.loads(open('access.log', 'r').read())
+        db  = json.loads(open(settings.DB_PATH, 'r').read())
     except IOError:
         db = []
     db.append({
         'receiveTime': calendar.timegm(datetime.datetime.utcnow().timetuple()),
         'event': event
     })
-    with open('access.log~', 'w') as f:
+    with open(settings.DB_PATH+'~', 'w') as f:
         f.write(json.dumps(db))
-    os.rename('access.log~', 'access.log')
+    os.rename(settings.DB_PATH+'~', settings.DB_PATH)
 
 def slack_notify(string):
     requests.post(settings.SLACK_HOOK,
