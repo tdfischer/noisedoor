@@ -29,14 +29,14 @@ def slack_notify(string):
         })
 
 EVENTS = {
-    'trigger-bell': 'Ding dong at the %{target}s door'
+    'trigger-bell': 'Ding dong at the %(target)s door'
 }
 
 def handle_event(line):
     event = json.loads(line)
     event.setdefault('IsHistoricEvent', False)
     if event['IsHistoricEvent']:
-        pass
+        return
     log_event(event)
     if event['type'] in EVENTS:
         slack_notify(EVENTS[event['type']] % event)
