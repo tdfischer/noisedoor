@@ -8,7 +8,7 @@ import os
 
 import settings
 
-def log_event(evt):
+def log_event(event):
     logging.debug('Got event %s', event['type'])
     try:
         db  = json.loads(open('access.log', 'r').read())
@@ -16,7 +16,7 @@ def log_event(evt):
         db = []
     db.append({
         'receiveTime': calendar.timegm(datetime.datetime.utcnow().timetuple()),
-        'event': evt
+        'event': event
     })
     with open('access.log~', 'w') as f:
         f.write(json.dumps(db))
