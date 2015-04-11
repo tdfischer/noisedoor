@@ -6,7 +6,13 @@ import logging
 import requests
 import os
 
-import settings
+import sys
+
+sys.path.append('/etc/')
+try:
+    import noisedoor_settings
+except ImportError:
+    print "Missing /etc/noisedoor_settings.py"
 
 def log_event(event):
     logging.debug('Got event %s', event['type'])
