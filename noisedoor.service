@@ -6,6 +6,8 @@ Requires=network.target
 Type=simple
 ExecStart=/usr/bin/noisedoor
 Restart=on-failure
+User=noisedoor
+Group=noisedoor
 
 [Install]
 WantedBy=multi-user.target
