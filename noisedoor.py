@@ -9,6 +9,7 @@ import os
 import settings
 
 def log_event(evt):
+    logging.debug('Got event %s', event['type'])
     try:
         db  = json.loads(open('access.log', 'r').read())
     except IOError:
@@ -32,9 +33,8 @@ EVENTS = {
 }
 
 def handle_event(line):
-    evt = json.loads(line)
-    logging.debug('event %s', evt['type'])
-    log_event(evt)
+    event = json.loads(line)
+    log_event(event)
     if event['type'] in EVENTS:
         slack_notify(event['type'] % event)
     else:
