@@ -1,0 +1,11 @@
+[Unit]
+Description=Earl <> Slack bridge
+Requires=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/noisedoor
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
