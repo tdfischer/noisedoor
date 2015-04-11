@@ -52,7 +52,3 @@ def run_stream():
         if len(s) == 2:
             handle_event(s[0])
             buf = s[1]
-
-if __name__ == "__main__":
-    logging.basicConfig(level=logging.DEBUG)
-    run_stream()

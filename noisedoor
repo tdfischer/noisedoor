@@ -1,0 +1,7 @@
+#!/usr/bin/env python
+import noisedoor
+import logging
+
+if __name__ == "__main__":
+    logging.basicConfig(level=logging.DEBUG)
+    noisedoor.run_stream()
