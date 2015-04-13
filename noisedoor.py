@@ -35,7 +35,9 @@ def slack_notify(string):
         })
 
 EVENTS = {
-    'trigger-bell': 'Ding dong at the %(target)s door'
+    'trigger-bell': ':bell: at the %(target)s door',
+    'open': 'Opening %(target) via activity at %(source).',
+    'user-updated': 'Token renewed: %(msg)'
 }
 
 def handle_event(line):
